@@ -346,27 +346,7 @@
                 opacity: 0;
             }
         }
-        
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .envelope {
-                bottom: 20px;
-                right: 20px;
-                width: 70px;
-                height: 50px;
-            }
-            
-            .envelope-flap {
-                border-left: 35px solid transparent;
-                border-right: 35px solid transparent;
-            }
+              }
      .photo-container{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -390,7 +370,27 @@
   object-fit: cover;
   display: block;
 }
-   }
+   } 
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .envelope {
+                bottom: 20px;
+                right: 20px;
+                width: 70px;
+                height: 50px;
+            }
+            
+            .envelope-flap {
+                border-left: 35px solid transparent;
+                border-right: 35px solid transparent;
+     
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
@@ -430,7 +430,6 @@
   <div class="photo-item"><img src="AVENTURE.jpeg" alt="Notre aventure ✨"></div>
 </div>
 
-</div>
 
  </div>
                 <p style="text-align: center; color: #a36ba5; font-style: italic;">
@@ -598,10 +597,11 @@
         
         // Initialiser le site
         document.addEventListener('DOMContentLoaded', function() {
-            createHearts();
-            generateLetter();
-            generatePhotoFrames();
-            setupEnvelope();
+  createHearts();
+  generateLetter();
+  // generatePhotoFrames(); // désactivé car les photos sont déjà en HTML
+  setupEnvelope();
+});
             
             // Message de bienvenue
             setTimeout(() => {
