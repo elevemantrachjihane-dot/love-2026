@@ -367,7 +367,30 @@
                 border-left: 35px solid transparent;
                 border-right: 35px solid transparent;
             }
-        }
+     .photo-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.photo-item{
+  background: #ffd9ea;
+  border-radius: 18px;
+  overflow: hidden;
+  height: 160px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+   }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
@@ -399,12 +422,15 @@
                 </div>
                 <div class="photo-container" id="photo-container">
                     <!-- Les cadres photo seront générés ici par JavaScript -->
-               <img src="FIRST.HEIC">
-<img src="PARFAIT.HEIC">
-<img src="SOURIRE.HEIC">
-<img src="DOUX.JPG">
-<img src="COMPLICE.JPG">
-<img src="AVENTURE.HEIC">
+               <div class="photo-container" id="photo-container">
+  <div class="photo-item"><img src="FIRST.HEIC" alt="photo 1"></div>
+  <div class="photo-item"><img src="PARFAIT.HEIC" alt="photo 2"></div>
+  <div class="photo-item"><img src="SOURIRE.HEIC" alt="photo 3"></div>
+  <div class="photo-item"><img src="DOUX.JPG" alt="photo 4"></div>
+  <div class="photo-item"><img src="COMPLICE.JPG" alt="photo 5"></div>
+  <div class="photo-item"><img src="AVENTURE.HEIC" alt="photo 6"></div>
+</div>
+
  </div>
                 <p style="text-align: center; color: #a36ba5; font-style: italic;">
                     <i class="fas fa-heart" style="color: #ff4081;"></i> 
