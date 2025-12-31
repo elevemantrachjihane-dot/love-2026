@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un message spécial pour toi ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffe6f2, #fff0f7);
+            color: #5a3d5c;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #d65ca9;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .heart {
+            color: #ff4081;
+            animation: heartbeat 1.2s infinite;
+            display: inline-block;
+        }
+        
+        .intro {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-style: italic;
+            color: #7a5b7c;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .letter-section {
+            flex: 1;
+            min-width: 300px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(214, 92, 169, 0.15);
+            border: 1px solid #ffcce6;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .letter-section::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ffcce6, #ffe6f2, #ffcce6);
+            z-index: -1;
+            border-radius: 30px;
+        }
+        
+        .letter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px dashed #ffb3d9;
+            padding-bottom: 15px;
+        }
+        
+        .letter-header h2 {
+            color: #d65ca9;
+            font-size: 1.8rem;
+        }
+        
+        .letter-date {
+            color: #a36ba5;
+            font-style: italic;
+        }
+        
+        .letter-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #5a3d5c;
+        }
+        
+        .letter-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 25px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #d65ca9;
+        }
+        
+        .photos-section {
+            flex: 1;
+            min-width: 300px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(214, 92, 169, 0.15);
+            border: 1px solid #ffcce6;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photos-section::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ffe6f2, #ffcce6, #ffe6f2);
+            z-index: -1;
+            border-radius: 30px;
+        }
+        
+        .photos-header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px dashed #ffb3d9;
+            padding-bottom: 15px;
+        }
+        
+        .photos-header h2 {
+            color: #d65ca9;
+            font-size: 1.8rem;
+        }
+        
+        .photo-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .photo-frame {
+            height: 150px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.05);
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ffcce6, #ffe6f2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #d65ca9;
+        }
+        
+        .photo-placeholder i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .envelope {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 80px;
+            height: 60px;
+            background-color: #ffb3d9;
+            border-radius: 0 10px 10px 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .envelope:hover {
+            transform: scale(1.1);
+        }
+        
+        .envelope i {
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .envelope-flap {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 20px solid #ff99cc;
+            transform-origin: top;
+            transition: transform 0.5s ease;
+        }
+        
+        .envelope:hover .envelope-flap {
+            transform: rotateX(180deg);
+        }
+        
+        .hidden-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            z-index: 200;
+            text-align: center;
+            transition: transform 0.5s ease;
+            border: 2px solid #ffcce6;
+        }
+        
+        .hidden-message.active {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .hidden-message h3 {
+            color: #d65ca9;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: #d65ca9;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 150;
+            display: none;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+        
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart-particle {
+            position: absolute;
+            color: rgba(255, 64, 129, 0.5);
+            font-size: 20px;
+            opacity: 0;
+            animation: float 5s linear infinite;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #a36ba5;
+            font-size: 0.9rem;
+            border-top: 1px dashed #ffb3d9;
+            margin-top: 20px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .envelope {
+                bottom: 20px;
+                right: 20px;
+                width: 70px;
+                height: 50px;
+            }
+            
+            .envelope-flap {
+                border-left: 35px solid transparent;
+                border-right: 35px solid transparent;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hearts-container" id="hearts-container"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Pour toi, mon amour <span class="heart">❤️</span></h1>
+            <p class="intro">Une petite surprise numérique pour illuminer ta journée</p>
+        </header>
+        
+        <div class="main-content">
+            <section class="letter-section">
+                <div class="letter-header">
+                    <h2>Lettre d'amour</h2>
+                    <div class="letter-date">Aujourd'hui</div>
+                </div>
+                <div class="letter-content" id="letter-content">
+                    <!-- La lettre sera générée ici par JavaScript -->
+                </div>
+                <div class="signature">Avec tout mon amour</div>
+            </section>
+            
+            <section class="photos-section">
+                <div class="photos-header">
+                    <h2>Nos souvenirs</h2>
+                    <p>Clique sur les cadres pour ajouter nos photos</p>
+                </div>
+                <div class="photo-container" id="photo-container">
+                    <!-- Les cadres photo seront générés ici par JavaScript -->
+                </div>
+                <p style="text-align: center; color: #a36ba5; font-style: italic;">
+                    <i class="fas fa-heart" style="color: #ff4081;"></i> 
+                    Chaque photo est un souvenir précieux de nous 
+                    <i class="fas fa-heart" style="color: #ff4081;"></i>
+                </p>
+            </section>
+        </div>
+        
+        <footer>
+            <p>Créé avec tout mon amour ❤️ - Cette page est uniquement pour toi</p>
+        </footer>
+    </div>
+    
+    <div class="envelope" id="envelope">
+        <div class="envelope-flap"></div>
+        <i class="fas fa-heart"></i>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="hidden-message" id="hidden-message">
+        <button class="close-btn" id="close-btn">&times;</button>
+        <h3>Message secret 💖</h3>
+        <p>Tu es la personne la plus importante de ma vie. Chaque jour à tes côtés est un cadeau, et je suis tellement reconnaissant(e) de t'avoir dans ma vie.</p>
+        <p>Je t'aime plus que les mots ne pourront jamais l'exprimer.</p>
+        <p style="margin-top: 20px; font-family: 'Dancing Script', cursive; font-size: 1.5rem;">Pour toujours à toi ❤️</p>
+    </div>
+
+    <script>
+        // Générer des cœurs flottants
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts-container');
+            const colors = ['#ff4081', '#ff99cc', '#d65ca9', '#ff66b3'];
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-particle');
+                heart.innerHTML = '❤️';
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.animationDuration = `${Math.random() * 4 + 4}s`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Générer la lettre d'amour
+        function generateLetter() {
+            const letterContent = document.getElementById('letter-content');
+            const letterParts = [
+                "Mon très cher,",
+                "Aujourd'hui, j'ai voulu créer quelque chose de spécial pour toi, une petite surprise numérique pour te rappeler à quel point tu comptes pour moi.",
+                "Quand je pense à toi, mon cœur s'emballe et un sourire se dessine sur mes lèvres. Tu es ma lumière dans les jours sombres, mon rayon de soleil après la pluie.",
+                "Chaque moment passé à tes côtés est un trésor que je garde précieusement dans mon cœur. Que ce soit nos fous rires, nos conversations profondes ou simplement nos silences complices, tout avec toi est magique.",
+                "Je me souviens de la première fois où nos regards se sont croisés, de la première fois où ta main a trouvé la mienne, de tous ces petits détails qui ont tissé notre histoire.",
+                "Merci d'être celui qui me comprend sans que j'aie besoin de parler, qui me soutient dans mes projets, qui me fait rire aux éclats et qui me regarde avec tant d'amour.",
+                "Je t'aime pour la personne merveilleuse que tu es, pour ton sourire qui illumine mes journées, pour ton cœur généreux et pour l'amour que tu me donnes chaque jour.",
+                "Je te promets de toujours être à tes côtés, de te soutenir dans tes rêves et de t'aimer un peu plus chaque jour qui passe.",
+                "Tu es et resteras toujours la plus belle chose qui me soit arrivée."
+            ];
+            
+            letterParts.forEach(part => {
+                const paragraph = document.createElement('p');
+                paragraph.textContent = part;
+                letterContent.appendChild(paragraph);
+            });
+        }
+        
+        // Générer les cadres photo
+        function generatePhotoFrames() {
+            const photoContainer = document.getElementById('photo-container');
+            const photoMessages = [
+                "Notre première photo",
+                "Un moment parfait",
+                "Ce sourire que j'adore",
+                "Notre aventure",
+                "Un doux souvenir",
+                "Un moment complice"
+            ];
+            
+            for (let i = 0; i < 6; i++) {
+                const photoFrame = document.createElement('div');
+                photoFrame.classList.add('photo-frame');
+                
+                const placeholder = document.createElement('div');
+                placeholder.classList.add('photo-placeholder');
+                
+                const icon = document.createElement('i');
+                icon.className = i < 2 ? 'fas fa-heart' : (i < 4 ? 'fas fa-camera' : 'fas fa-smile');
+                
+                const text = document.createElement('p');
+                text.textContent = photoMessages[i];
+                
+                placeholder.appendChild(icon);
+                placeholder.appendChild(text);
+                photoFrame.appendChild(placeholder);
+                
+                // Ajouter un gestionnaire d'événements pour permettre l'ajout de photo
+                photoFrame.addEventListener('click', function() {
+                    alert(`Clique sur "OK" puis utilise le bouton "Parcourir" pour ajouter une photo à ce cadre : "${photoMessages[i]}"\n\n(Pour une version fonctionnelle, il faudrait ajouter un backend pour gérer l'upload des images)`);
+                    
+                    // Simulation d'upload d'image
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+                    input.style.display = 'none';
+                    document.body.appendChild(input);
+                    
+                    input.addEventListener('change', function(e) {
+                        if (e.target.files && e.target.files[0]) {
+                            const reader = new FileReader();
+                            reader.onload = function(event) {
+                                placeholder.innerHTML = '';
+                                const img = document.createElement('img');
+                                img.src = event.target.result;
+                                img.style.width = '100%';
+                                img.style.height = '100%';
+                                img.style.objectFit = 'cover';
+                                placeholder.appendChild(img);
+                            };
+                            reader.readAsDataURL(e.target.files[0]);
+                        }
+                        document.body.removeChild(input);
+                    });
+                    
+                    input.click();
+                });
+                
+                photoContainer.appendChild(photoFrame);
+            }
+        }
+        
+        // Gérer l'enveloppe et le message caché
+        function setupEnvelope() {
+            const envelope = document.getElementById('envelope');
+            const hiddenMessage = document.getElementById('hidden-message');
+            const overlay = document.getElementById('overlay');
+            const closeBtn = document.getElementById('close-btn');
+            
+            envelope.addEventListener('click', function() {
+                hiddenMessage.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeBtn.addEventListener('click', closeMessage);
+            overlay.addEventListener('click', closeMessage);
+            
+            function closeMessage() {
+                hiddenMessage.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Ajouter un effet de fermeture avec la touche Échap
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && hiddenMessage.classList.contains('active')) {
+                    closeMessage();
+                }
+            });
+        }
+        
+        // Initialiser le site
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            generateLetter();
+            generatePhotoFrames();
+            setupEnvelope();
+            
+            // Message de bienvenue
+            setTimeout(() => {
+                alert("Bienvenue sur cette page spéciale créée avec tout mon amour pour toi ❤️\n\nExplore les différentes sections et n'oublie pas de cliquer sur l'enveloppe en bas à droite !");
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
